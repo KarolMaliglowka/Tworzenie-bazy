@@ -30,7 +30,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Przycisk_Znajdz_Serwery = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,7 +64,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.Przycisk_Znajdz_Serwery);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label3);
@@ -86,15 +86,15 @@
             this.comboBox1.TabIndex = 0;
             this.comboBox1.Text = ".\\sqlexpress";
             // 
-            // button1
+            // Przycisk_Znajdz_Serwery
             // 
-            this.button1.Location = new System.Drawing.Point(356, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 21);
-            this.button1.TabIndex = 1;
-            this.button1.Text = ">>";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Przycisk_Znajdz_Serwery.Location = new System.Drawing.Point(356, 29);
+            this.Przycisk_Znajdz_Serwery.Name = "Przycisk_Znajdz_Serwery";
+            this.Przycisk_Znajdz_Serwery.Size = new System.Drawing.Size(30, 21);
+            this.Przycisk_Znajdz_Serwery.TabIndex = 1;
+            this.Przycisk_Znajdz_Serwery.Text = ">>";
+            this.Przycisk_Znajdz_Serwery.UseVisualStyleBackColor = true;
+            this.Przycisk_Znajdz_Serwery.Click += new System.EventHandler(this.Przycisk_Znajdz_Serwery_Click);
             // 
             // textBox3
             // 
@@ -353,7 +353,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Przycisk_Znajdz_Serwery;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;

@@ -22,12 +22,6 @@ namespace tworzenie_bazy
             this.ShowIcon = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            pobieranie_instancji();
-            wybierz();
-        }
-
         private void pobieranie_instancji()
         {
             comboBox1.Items.Clear();
@@ -245,6 +239,12 @@ namespace tworzenie_bazy
             ada.Fill(dt);
             //comboBox2.DataSource = dt;
             //comboBox2.ValueMember = "name"; 
+        }
+
+        private void Przycisk_Znajdz_Serwery_Click(object sender, EventArgs e)
+        {
+            pobieranie_instancji();
+            wybierz();
         }
     }
 }
