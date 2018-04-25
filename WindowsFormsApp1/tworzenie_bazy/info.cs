@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace tworzenie_bazy
 {
-    public partial class OknoGlowne : Form
+    public partial class info : Form
     {
-        public OknoGlowne()
+        public info()
         {
             InitializeComponent();
         }
