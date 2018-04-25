@@ -1,6 +1,6 @@
 ﻿namespace tworzenie_bazy
 {
-    partial class Form1
+    partial class OknoGlowne
     {
         /// <summary>
         /// Required designer variable.
@@ -84,7 +84,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(208, 21);
             this.comboBox1.TabIndex = 0;
-            this.comboBox1.Text = ".\\sqldarsoft";
+            this.comboBox1.Text = ".\\sqlexpress";
             // 
             // button1
             // 
@@ -100,10 +100,10 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(142, 83);
             this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '@';
+            this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(208, 20);
             this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "darsoft01";
+            this.textBox3.Text = "sqlexpress";
             // 
             // textBox2
             // 
@@ -160,7 +160,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(389, 176);
             this.tabControl1.TabIndex = 3;
-            //this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage1
             // 
@@ -321,7 +320,7 @@
             this.linkLabel1.Text = "Email do autora.";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // Form1
+            // OknoGlowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -334,7 +333,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximumSize = new System.Drawing.Size(442, 439);
             this.MinimumSize = new System.Drawing.Size(442, 439);
-            this.Name = "Form1";
+            this.Name = "OknoGlowne";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

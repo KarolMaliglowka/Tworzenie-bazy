@@ -13,9 +13,9 @@ using System.Threading;
 
 namespace tworzenie_bazy
 {
-    public partial class Form1 : Form
+    public partial class OknoGlowne : Form
     {
-        public Form1()
+        public OknoGlowne()
         {
             InitializeComponent();
             this.Text = "Zakładanie bazy i użytkownika";
@@ -219,7 +219,7 @@ namespace tworzenie_bazy
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
-            proc.StartInfo.FileName = "mailto:karol@maliglowka.pl";
+            proc.StartInfo.FileName = "mailto:william@o2.pl";
             proc.Start();
         }
 
