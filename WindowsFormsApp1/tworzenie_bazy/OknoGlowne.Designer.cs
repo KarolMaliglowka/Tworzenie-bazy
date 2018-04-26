@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.AdresSerwera = new System.Windows.Forms.ComboBox();
             this.Przycisk_Znajdz_Serwery = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -63,7 +63,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.AdresSerwera);
             this.groupBox1.Controls.Add(this.Przycisk_Znajdz_Serwery);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.textBox2);
@@ -77,14 +77,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Połączenie z serwerem:";
             // 
-            // comboBox1
+            // AdresSerwera
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(142, 30);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(208, 21);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.Text = ".\\sqlexpress";
+            this.AdresSerwera.FormattingEnabled = true;
+            this.AdresSerwera.Location = new System.Drawing.Point(142, 30);
+            this.AdresSerwera.Name = "AdresSerwera";
+            this.AdresSerwera.Size = new System.Drawing.Size(208, 21);
+            this.AdresSerwera.TabIndex = 0;
+            this.AdresSerwera.Text = ".\\sqlexpress";
             // 
             // Przycisk_Znajdz_Serwery
             // 
@@ -366,7 +366,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox AdresSerwera;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox5;

@@ -24,7 +24,8 @@ namespace tworzenie_bazy
 
         private void pobieranie_instancji()
         {
-            comboBox1.Items.Clear();
+            AdresSerwera.Items.Clear();
+            AdresSerwera.Text = "wyszukuje";
             SqlDataSourceEnumerator instance = SqlDataSourceEnumerator.Instance;
             System.Data.DataTable table = instance.GetDataSources();
             foreach (System.Data.DataRow row in table.Rows)
@@ -37,10 +38,10 @@ namespace tworzenie_bazy
                     {
                         item += @"\" + Convert.ToString(row["InstanceName"]).Trim();
                     }
-                    comboBox1.Items.Add(item);
+                    AdresSerwera.Items.Add(item);
                 }
             }
-            comboBox1.Focus();
+            AdresSerwera.Focus();
             textBox8.Enabled = false;
         }
 
@@ -50,7 +51,7 @@ namespace tworzenie_bazy
 
         void wybierz()
         {
-            comboBox1.Text = "- - wybierz - -";
+            AdresSerwera.Text = "- - wybierz - -";
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -58,13 +59,13 @@ namespace tworzenie_bazy
             if (tabPage1 == tabControl1.SelectedTab)
             {
                 #region Pierwszy TAB, utworzenie bazy i użytkownika
-                if (comboBox1.Text == "- - wybierz - -")
+                if (AdresSerwera.Text == "- - wybierz - -")
                 {
                     MessageBox.Show("Adres serwera wydaje się być niepoprawny!");
                 }
                 else
                 {
-                    if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox5.Text == "" || textBox7.Text == "" || textBox8.Text == "" || comboBox1.Text == "")
+                    if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox5.Text == "" || textBox7.Text == "" || textBox8.Text == "" || AdresSerwera.Text == "")
                     {
                         MessageBox.Show("Wypełnij wszystkie pola!");
                     }
@@ -72,7 +73,7 @@ namespace tworzenie_bazy
                     {
                         if (textBox7.Text == textBox8.Text)
                         {
-                            wykonaj_1(comboBox1.Text, textBox2.Text, textBox3.Text, textBox1.Text, textBox5.Text, textBox7.Text);
+                            wykonaj_1(AdresSerwera.Text, textBox2.Text, textBox3.Text, textBox1.Text, textBox5.Text, textBox7.Text);
                             czyszczenie();
                         }
                         else
@@ -86,7 +87,7 @@ namespace tworzenie_bazy
             else
             {
                 #region Drugi TAB, wykonanie instrukcji z kodu
-                wykonaj_2(comboBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+                wykonaj_2(AdresSerwera.Text, textBox2.Text, textBox3.Text, textBox4.Text);
                 czyszczenie();
                 #endregion
             }
@@ -147,7 +148,7 @@ namespace tworzenie_bazy
             textBox7.Clear();
             textBox8.Clear();
             //comboBox1.Items.Clear();
-            comboBox1.Focus();
+            AdresSerwera.Focus();
             //comboBox1.Text = "";
             checkBox1.Checked = false;
         }
@@ -232,7 +233,7 @@ namespace tworzenie_bazy
         private void button4_Click(object sender, EventArgs e)
         {
             string connetionString = null;
-            connetionString = "Data Source=" + comboBox1.Text + ";User ID=" + textBox2.Text + ";Password=" + textBox3.Text;
+            connetionString = "Data Source=" + AdresSerwera.Text + ";User ID=" + textBox2.Text + ";Password=" + textBox3.Text;
             SqlConnection con = new SqlConnection(connetionString);
             SqlDataAdapter ada = new SqlDataAdapter("select name from sys.databases where database_id > 6", con);
             DataTable dt = new DataTable();
@@ -243,6 +244,7 @@ namespace tworzenie_bazy
 
         private void Przycisk_Znajdz_Serwery_Click(object sender, EventArgs e)
         {
+            
             pobieranie_instancji();
             wybierz();
         }
