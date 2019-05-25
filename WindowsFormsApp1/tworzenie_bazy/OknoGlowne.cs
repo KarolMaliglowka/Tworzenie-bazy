@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
-using System.Threading;
 
 namespace tworzenie_bazy
 {
@@ -142,18 +136,14 @@ namespace tworzenie_bazy
         private void czyszczenie()
         {
             textBox1.Clear();
-            //textBox2.Clear();
-            //textBox3.Clear();
             textBox4.Clear();
             textBox5.Clear();
             textBox7.Clear();
             textBox8.Clear();
-            //comboBox1.Items.Clear();
             AdresSerwera.Focus();
-            //comboBox1.Text = "";
             checkBox1.Checked = false;
         }
-        
+
         // wykonianie instrukcji tworzenia bazy i uzytkownika
         private void wykonaj_1(string instancja, string db_login, string db_haslo, string n_baza, string n_login, string n_haslo)
         {
@@ -166,10 +156,14 @@ namespace tworzenie_bazy
             sql1 =
                 "CREATE DATABASE " + n_baza.ToString() + ";";
             sql2 =
-                "CREATE LOGIN " + n_login.ToString() + " WITH PASSWORD = '" + n_haslo.ToString() + "';" +
+                "CREATE LOGIN " + n_login.ToString() +
+                " WITH PASSWORD = '" + n_haslo.ToString() +
+                "';" +
                 "USE " + n_baza.ToString() + ";" +
-                "CREATE USER " + n_login.ToString() + " FOR LOGIN " + n_login.ToString() + ";" +
-                "EXEC sp_addrolemember 'db_owner', " + n_login.ToString() + ";";
+                "CREATE USER " + n_login.ToString() +
+                " FOR LOGIN " + n_login.ToString() + ";" +
+                "EXEC sp_addrolemember 'db_owner', " + n_login.ToString() +
+                ";";
             cnn = new SqlConnection(connetionString);
             try
             {
@@ -219,18 +213,6 @@ namespace tworzenie_bazy
             proc.Start();
         }
 
-        //private void tabControl1_Selected(object sender, TabControlEventArgs e)
-        //{
-        //    if (tabPage3 == tabControl1.SelectedTab)
-        //    {
-        //        button3.Enabled = false;
-        //    }
-        //    else
-        //    {
-        //        button3.Enabled = true;
-        //    }
-        //}
-
         private void button4_Click(object sender, EventArgs e)
         {
             string connetionString = null;
@@ -239,13 +221,10 @@ namespace tworzenie_bazy
             SqlDataAdapter ada = new SqlDataAdapter("select name from sys.databases where database_id > 6", con);
             DataTable dt = new DataTable();
             ada.Fill(dt);
-            //comboBox2.DataSource = dt;
-            //comboBox2.ValueMember = "name"; 
         }
 
         private void Przycisk_Znajdz_Serwery_Click(object sender, EventArgs e)
         {
-            
             pobieranie_instancji();
             wybierz();
         }
