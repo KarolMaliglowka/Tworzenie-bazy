@@ -47,6 +47,7 @@ namespace tworzenie_bazy
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Text = "Tworzenie bazy";
         }
 
         void wybierz()
