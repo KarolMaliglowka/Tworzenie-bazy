@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
-using System.Threading;
 
 namespace tworzenie_bazy
 {
@@ -25,21 +20,19 @@ namespace tworzenie_bazy
         private void pobieranie_instancji()
         {
             AdresSerwera.Items.Clear();
-            AdresSerwera.Text = "wyszukuje";
-            SqlDataSourceEnumerator instance = SqlDataSourceEnumerator.Instance;
-            System.Data.DataTable table = instance.GetDataSources();
-            foreach (System.Data.DataRow row in table.Rows)
+            AdresSerwera.Text = "wyszukuję";
+            var instance = SqlDataSourceEnumerator.Instance;
+            var table = instance.GetDataSources();
+            foreach (DataRow row in table.Rows)
             {
-                if (row["ServerName"] != DBNull.Value && Environment.MachineName.Equals(row["ServerName"].ToString()))
+                if (row["ServerName"] == DBNull.Value ||
+                    !Environment.MachineName.Equals(row["ServerName"].ToString())) continue;
+                var item = row["ServerName"].ToString();
+                if (row["InstanceName"] != DBNull.Value || !string.IsNullOrEmpty(Convert.ToString(row["InstanceName"]).Trim()))
                 {
-                    string item = string.Empty;
-                    item = row["ServerName"].ToString();
-                    if (row["InstanceName"] != DBNull.Value || !string.IsNullOrEmpty(Convert.ToString(row["InstanceName"]).Trim()))
-                    {
-                        item += @"\" + Convert.ToString(row["InstanceName"]).Trim();
-                    }
-                    AdresSerwera.Items.Add(item);
+                    item += @"\" + Convert.ToString(row["InstanceName"]).Trim();
                 }
+                AdresSerwera.Items.Add(item);
             }
             AdresSerwera.Focus();
             textBox8.Enabled = false;
@@ -96,16 +89,19 @@ namespace tworzenie_bazy
 
         private void textBox2_Validating(object sender, CancelEventArgs e)
         {
-            string s = textBox2.Text;
+            var s = textBox2.Text;
             if (s.Length < 2 || s.Length > 14)
             {
-                MessageBox.Show("Niepoprawna wartość pola, hasło powinno mieć od 2 do 14 znaków.", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("Niepoprawna wartość pola, hasło powinno mieć od 2 do 14 znaków.", "Informacja",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
             }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked == true)
+            if (checkBox1.Checked)
             {
                 textBox5.Enabled = false;
                 textBox5.Text = textBox1.Text;
@@ -142,39 +138,30 @@ namespace tworzenie_bazy
         private void czyszczenie()
         {
             textBox1.Clear();
-            //textBox2.Clear();
-            //textBox3.Clear();
             textBox4.Clear();
             textBox5.Clear();
             textBox7.Clear();
             textBox8.Clear();
-            //comboBox1.Items.Clear();
             AdresSerwera.Focus();
-            //comboBox1.Text = "";
             checkBox1.Checked = false;
         }
-        
+
         // wykonianie instrukcji tworzenia bazy i uzytkownika
         private void wykonaj_1(string instancja, string db_login, string db_haslo, string n_baza, string n_login, string n_haslo)
         {
-            string connetionString = null;
-            SqlConnection cnn;
-            SqlCommand cmd;
-            string sql1 = null;
-            string sql2 = null;
-            connetionString = "Data Source=" + instancja.ToString() + ";User ID=" + db_login.ToString() + ";Password=" + db_haslo.ToString();
-            sql1 =
-                "CREATE DATABASE " + n_baza.ToString() + ";";
-            sql2 =
-                "CREATE LOGIN " + n_login.ToString() + " WITH PASSWORD = '" + n_haslo.ToString() + "';" +
-                "USE " + n_baza.ToString() + ";" +
-                "CREATE USER " + n_login.ToString() + " FOR LOGIN " + n_login.ToString() + ";" +
-                "EXEC sp_addrolemember 'db_owner', " + n_login.ToString() + ";";
-            cnn = new SqlConnection(connetionString);
+            var connectionString = "Data Source=" + instancja + ";User ID=" + db_login + ";Password=" + db_haslo;
+            var sql1 =
+                "CREATE DATABASE " + n_baza + ";";
+            var sql2 =
+                "CREATE LOGIN " + n_login + " WITH PASSWORD = '" + n_haslo + "';" +
+                "USE " + n_baza + ";" +
+                "CREATE USER " + n_login + " FOR LOGIN " + n_login + ";" +
+                "EXEC sp_addrolemember 'db_owner', " + n_login + ";";
+            var cnn = new SqlConnection(connectionString);
             try
             {
                 cnn.Open();
-                cmd = new SqlCommand(sql1, cnn);
+                var cmd = new SqlCommand(sql1, cnn);
                 cmd.ExecuteNonQuery();
                 cmd = new SqlCommand(sql2, cnn);
                 cmd.ExecuteNonQuery();
@@ -190,17 +177,12 @@ namespace tworzenie_bazy
 
         private void wykonaj_2(string instancja, string db_login, string db_haslo, string kod)
         {
-            string connetionString = null;
-            SqlConnection cnn;
-            SqlCommand cmd;
-            string sql1 = null;
-            connetionString = "Data Source=" + instancja.ToString() + ";User ID=" + db_login.ToString() + ";Password=" + db_haslo.ToString();
-            sql1 = kod.ToString();
-            cnn = new SqlConnection(connetionString);
+            var connectionString = "Data Source=" + instancja + ";User ID=" + db_login + ";Password=" + db_haslo;
+            var cnn = new SqlConnection(connectionString);
             try
             {
                 cnn.Open();
-                cmd = new SqlCommand(sql1, cnn);
+                var cmd = new SqlCommand(kod, cnn);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 cnn.Close();
@@ -214,38 +196,23 @@ namespace tworzenie_bazy
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            var proc = new System.Diagnostics.Process();
             proc.StartInfo.FileName = "mailto:william@o2.pl";
             proc.Start();
         }
 
-        //private void tabControl1_Selected(object sender, TabControlEventArgs e)
-        //{
-        //    if (tabPage3 == tabControl1.SelectedTab)
-        //    {
-        //        button3.Enabled = false;
-        //    }
-        //    else
-        //    {
-        //        button3.Enabled = true;
-        //    }
-        //}
-
         private void button4_Click(object sender, EventArgs e)
         {
-            string connetionString = null;
-            connetionString = "Data Source=" + AdresSerwera.Text + ";User ID=" + textBox2.Text + ";Password=" + textBox3.Text;
-            SqlConnection con = new SqlConnection(connetionString);
-            SqlDataAdapter ada = new SqlDataAdapter("select name from sys.databases where database_id > 6", con);
-            DataTable dt = new DataTable();
+            var connetionString = "Data Source=" + AdresSerwera.Text + ";User ID=" + textBox2.Text + ";Password=" + textBox3.Text;
+            var con = new SqlConnection(connetionString);
+            var ada = new SqlDataAdapter("select name from sys.databases where database_id > 6", con);
+            var dt = new DataTable();
             ada.Fill(dt);
-            //comboBox2.DataSource = dt;
-            //comboBox2.ValueMember = "name"; 
         }
 
         private void Przycisk_Znajdz_Serwery_Click(object sender, EventArgs e)
         {
-            
+
             pobieranie_instancji();
             wybierz();
         }
