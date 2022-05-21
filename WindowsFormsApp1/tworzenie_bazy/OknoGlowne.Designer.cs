@@ -101,7 +101,7 @@
             this.textBox3.Location = new System.Drawing.Point(142, 83);
             this.textBox3.Name = "textBox3";
             this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(208, 20);
+            this.textBox3.Size = new System.Drawing.Size(244, 20);
             this.textBox3.TabIndex = 2;
             this.textBox3.Text = "sqlexpress";
             // 
@@ -109,7 +109,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(142, 57);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(208, 20);
+            this.textBox2.Size = new System.Drawing.Size(244, 20);
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "sa";
             this.textBox2.Validating += new System.ComponentModel.CancelEventHandler(this.textBox2_Validating);
@@ -205,7 +205,7 @@
             this.textBox8.Location = new System.Drawing.Point(172, 119);
             this.textBox8.Name = "textBox8";
             this.textBox8.PasswordChar = '@';
-            this.textBox8.Size = new System.Drawing.Size(204, 20);
+            this.textBox8.Size = new System.Drawing.Size(203, 20);
             this.textBox8.TabIndex = 8;
             // 
             // textBox7
@@ -213,7 +213,7 @@
             this.textBox7.Location = new System.Drawing.Point(172, 93);
             this.textBox7.Name = "textBox7";
             this.textBox7.PasswordChar = '@';
-            this.textBox7.Size = new System.Drawing.Size(204, 20);
+            this.textBox7.Size = new System.Drawing.Size(203, 20);
             this.textBox7.TabIndex = 7;
             this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
@@ -239,14 +239,14 @@
             // 
             this.textBox5.Location = new System.Drawing.Point(172, 67);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(204, 20);
+            this.textBox5.Size = new System.Drawing.Size(203, 20);
             this.textBox5.TabIndex = 6;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(172, 18);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(204, 20);
+            this.textBox1.Size = new System.Drawing.Size(203, 20);
             this.textBox1.TabIndex = 4;
             // 
             // label5
@@ -301,7 +301,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(255, 360);
+            this.button3.Location = new System.Drawing.Point(252, 360);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(158, 29);
             this.button3.TabIndex = 9;
@@ -335,7 +335,6 @@
             this.MinimumSize = new System.Drawing.Size(438, 439);
             this.Name = "OknoGlowne";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

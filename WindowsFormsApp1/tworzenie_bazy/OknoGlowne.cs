@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
@@ -59,7 +58,13 @@ namespace tworzenie_bazy
                 }
                 else
                 {
-                    if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox5.Text == "" || textBox7.Text == "" || textBox8.Text == "" || AdresSerwera.Text == "")
+                    if (textBox1.Text == "" ||
+                        textBox2.Text == "" ||
+                        textBox3.Text == "" ||
+                        textBox5.Text == "" ||
+                        textBox7.Text == "" ||
+                        textBox8.Text == "" ||
+                        AdresSerwera.Text == "")
                     {
                         MessageBox.Show("Wypełnij wszystkie pola!");
                     }
@@ -67,7 +72,12 @@ namespace tworzenie_bazy
                     {
                         if (textBox7.Text == textBox8.Text)
                         {
-                            wykonaj_1(AdresSerwera.Text, textBox2.Text, textBox3.Text, textBox1.Text, textBox5.Text, textBox7.Text);
+                            wykonaj_1(AdresSerwera.Text,
+                                textBox2.Text,
+                                textBox3.Text,
+                                textBox1.Text,
+                                textBox5.Text,
+                                textBox7.Text);
                             czyszczenie();
                         }
                         else
@@ -81,7 +91,10 @@ namespace tworzenie_bazy
             else
             {
                 #region Drugi TAB, wykonanie instrukcji z kodu
-                wykonaj_2(AdresSerwera.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+                wykonaj_2(AdresSerwera.Text,
+                    textBox2.Text,
+                    textBox3.Text,
+                    textBox4.Text);
                 czyszczenie();
                 #endregion
             }
@@ -147,16 +160,16 @@ namespace tworzenie_bazy
         }
 
         // wykonianie instrukcji tworzenia bazy i uzytkownika
-        private void wykonaj_1(string instancja, string db_login, string db_haslo, string n_baza, string n_login, string n_haslo)
+        private void wykonaj_1(string server, string login, string password, string dataBase, string dataBaseLogin, string dataBasePassword)
         {
-            var connectionString = "Data Source=" + instancja + ";User ID=" + db_login + ";Password=" + db_haslo;
+            var connectionString = $"Data Source={server};User ID={login};Password={password}";
             var sql1 =
-                "CREATE DATABASE " + n_baza + ";";
+                $"CREATE DATABASE {dataBase};";
             var sql2 =
-                "CREATE LOGIN " + n_login + " WITH PASSWORD = '" + n_haslo + "';" +
-                "USE " + n_baza + ";" +
-                "CREATE USER " + n_login + " FOR LOGIN " + n_login + ";" +
-                "EXEC sp_addrolemember 'db_owner', " + n_login + ";";
+                $"CREATE LOGIN {dataBaseLogin} WITH PASSWORD = '{dataBasePassword}';" +
+                $"USE {dataBase};" +
+                $"CREATE USER {dataBaseLogin} FOR LOGIN {dataBaseLogin};" +
+                $"EXEC sp_addrolemember 'db_owner', {dataBaseLogin};";
             var cnn = new SqlConnection(connectionString);
             try
             {
@@ -175,14 +188,14 @@ namespace tworzenie_bazy
             }
         }
 
-        private void wykonaj_2(string instancja, string db_login, string db_haslo, string kod)
+        private void wykonaj_2(string server, string login, string password, string code)
         {
-            var connectionString = "Data Source=" + instancja + ";User ID=" + db_login + ";Password=" + db_haslo;
+            var connectionString = $"Data Source={server};User ID={login};Password={password}";
             var cnn = new SqlConnection(connectionString);
             try
             {
                 cnn.Open();
-                var cmd = new SqlCommand(kod, cnn);
+                var cmd = new SqlCommand(code, cnn);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 cnn.Close();
@@ -201,18 +214,8 @@ namespace tworzenie_bazy
             proc.Start();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            var connetionString = "Data Source=" + AdresSerwera.Text + ";User ID=" + textBox2.Text + ";Password=" + textBox3.Text;
-            var con = new SqlConnection(connetionString);
-            var ada = new SqlDataAdapter("select name from sys.databases where database_id > 6", con);
-            var dt = new DataTable();
-            ada.Fill(dt);
-        }
-
         private void Przycisk_Znajdz_Serwery_Click(object sender, EventArgs e)
         {
-
             pobieranie_instancji();
             wybierz();
         }
